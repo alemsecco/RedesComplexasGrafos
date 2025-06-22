@@ -1,0 +1,152 @@
+ִ ࣪𖤐 RELATÓRIO COMPLETO - ANÁLISE DE REDES COMPLEXAS ִ ࣪𖤐
+
+INFORMAÇÕES BÁSICAS DOS GRAFOS
+==================================================
+Grafo Direcionado (Ator->Diretor): 57609 vértices, 90033 arestas
+Grafo Não Direcionado (Ator<->Ator): 48119 vértices, 179257 arestas
+
+PARTE 1: ANÁLISE ESTRUTURAL DOS GRAFOS
+============================================================
+
+1) DISTRIBUIÇÃO DE GRAUS
+----------------------------------------
+
+GRAFO DIRECIONADO (ATOR->DIRETOR) (AMOSTRA DE 100 NÓS):
+- Grau médio: 1.62
+- Grau máximo: 10
+- Grau mínimo: 0
+- Top 5 graus: [10, 9, 6, 6, 5]
+
+GRAFO NÃO DIRECIONADO (ATOR<->ATOR) (AMOSTRA DE 100 NÓS):
+- Grau médio: 15.08
+- Grau máximo: 97
+- Grau mínimo: 2
+- Top 5 graus: [97, 88, 83, 77, 62]
+
+2) DISTRIBUIÇÃO DE COMPONENTES
+----------------------------------------
+
+Componentes (AMOSTRA DE 100 NÓS):
+- Maior componente: 38410 nós
+- Componentes pequenas (<=3 nós): 3
+
+PARTE 2: ANÁLISE DE CENTRALIDADE
+============================================================
+
+3) TOP 10 DIRETORES MAIS INFLUENTES (Centralidade de Grau)
+------------------------------------------------------------
+1. MARTIN SCORSESE: 121
+2. STEVEN SPIELBERG: 120
+3. JOSEPH KANE: 112
+4. DON MICHAEL PAUL: 103
+5. STEVE BRILL: 91
+6. DIBAKAR BANERJEE: 91
+7. ROBERT RODRIGUEZ: 91
+8. CATHY GARCIA-MOLINA: 90
+9. PAUL HOEN: 89
+10. RON HOWARD: 84
+4) TOP 10 DIRETORES MAIS INFLUENTES (Centralidade de Intermediação)
+------------------------------------------------------------
+1. ARVIND SWAMY: 0.32
+2. SIDDIQUE: 0.22
+3. CHRISTOPHER GUEST: 0.14
+4. ROB REINER: 0.08
+5. RAM: 0.04
+6. PAUL JOHANSSON: 0.04
+7. ASHUTOSH GOWARIKER: 0.02
+8. MYSSKIN: 0.02
+9. SURAJ: 0.02
+10. JON LUCAS: 0.02
+5) TOP 10 DIRETORES MAIS INFLUENTES (Centralidade de Proximidade)
+------------------------------------------------------------
+1. ED BEGLEY JR.: 0.0000000036
+2. TONY COX: 0.0000000024
+3. SIENNA MILLER: 0.0000000018
+4. KIM CATTRALL: 0.0000000015
+5. CALLUM TURNER: 0.0000000015
+6. TOM COSTELLO: 0.0000000015
+7. ÓLAFUR DARRI ÓLAFSSON: 0.0000000012
+8. AMY FERGUSON: 0.0000000012
+9. BANKY WELLINGTON: 0.0000000009
+10. RAJ KAPOOR: 0.0000000009
+6) TOP 10 ATORES/ATRIZES MAIS INFLUENTES (Centralidade de Grau)
+------------------------------------------------------------
+1. ANUPAM KHER: 367
+2. DANNY TREJO: 270
+3. AMITABH BACHCHAN: 256
+4. PARESH RAWAL: 250
+5. JOHN GOODMAN: 247
+6. MORGAN FREEMAN: 247
+7. SAMUEL L. JACKSON: 242
+8. PAUL GIAMATTI: 229
+9. FRED ARMISEN: 227
+10. SHAH RUKH KHAN: 225
+7) TOP 10 ATORES/ATRIZES MAIS INFLUENTES (Centralidade de Intermediação)
+------------------------------------------------------------
+1. ANUPAM KHER: 1992.25
+2. IKO UWAIS: 1605.84
+3. AGUSTÍN SILVA: 1426.92
+4. OM PURI: 1099.49
+5. JACKIE CHAN: 1041.82
+6. KIERSTON WAREING: 941.59
+7. ALEX ABBAD: 828.80
+8. KEVIN HART: 797.28
+9. CHELSEA ISLAN: 790.85
+10. ANDRZEJ SEWERYN: 789.55
+8) TOP 10 ATORES/ATRIZES MAIS INFLUENTES (Centralidade de Proximidade)
+------------------------------------------------------------
+1. ALI LARTER: 0.0000821851
+2. GRANT HESLOV: 0.0000821851
+3. JOHN DIEHL: 0.0000821842
+4. MOS DEF: 0.0000821842
+5. SHONDRELLA AVERY: 0.0000821838
+6. LUCAS PAPAELIAS: 0.0000821832
+7. ROLAND BUCK III: 0.0000821829
+8. BRYAN CALLEN: 0.0000821828
+9. MANU INTIRAYMI: 0.0000821826
+10. REX LINN: 0.0000821824
+PARTE 3: EXPLICAÇÕES E INTERPRETAÇÕES
+============================================================
+
+EXPLICAÇÃO DAS MÉTRICAS DE CENTRALIDADE
+----------------------------------------
+
+CENTRALIDADE DE GRAU:
+- Mede quantas conexões diretas um nó tem.
+- Para diretores: quantos atores trabalharam com ele.
+- Para atores: quantos outros atores trabalharam com ele.
+
+CENTRALIDADE DE INTERMEDIAÇÃO:
+- Mede o quão importante um nó é como 'ponte' entre outros nós.
+- Nós com alta centralidade controlam o fluxo de informação/influência.
+- Para diretores: conectam diferentes grupos de atores.
+- Para atores: conectam diferentes comunidades de atores.
+
+CENTRALIDADE DE PROXIMIDADE:
+- Mede quão próximo um nó está de todos os outros nós.
+- Nós com alta centralidade podem influenciar rapidamente toda a rede.
+- Para diretores: podem alcançar muitos atores rapidamente.
+- Para atores: podem influenciar toda a comunidade rapidamente.
+
+CARACTERÍSTICAS DE REDE COMPLEXA
+----------------------------------------
+
+✓ Distribuição de Graus:
+  - Análise da heterogeneidade dos graus
+  - Identificação de hubs (nós com grau muito alto)
+  - Verificação de características scale-free
+
+✓ Componentes:
+  - Presença de componente gigante
+  - Fragmentação da rede
+  - Isolamento de nós
+
+✓ Interpretação:
+  - Redes scale-free têm alta heterogeneidade (CV > 1.0)
+  - Componente gigante indica alta conectividade
+  - Hubs são nós com grau muito superior à média
+
+✓ Contexto da Indústria do Entretenimento:
+  - Hubs representam atores/diretores muito ativos
+  - Componente gigante mostra a conectividade da indústria
+  - Centralidade indica influência e acesso a oportunidades

@@ -40,17 +40,17 @@ print("Analisando distribuição de graus do grafo direcionado...")
 relatorio += "1) DISTRIBUIÇÃO DE GRAUS\n"
 relatorio += "-" * 40 + "\n\n"
 
-relatorio += analises.analyze_degree_distribution(grafo_direcionado, "GRAFO DIRECIONADO (ATOR->DIRETOR)")
+relatorio += analises.analyze_degree_distribution(grafo_direcionado, "GRAFO DIRECIONADO (ATOR->DIRETOR)", sample_size=100)
 
 print("Analisando distribuição de graus do grafo não direcionado...")
-relatorio += analises.analyze_degree_distribution(grafo_nao_direcionado, "GRAFO NÃO DIRECIONADO (ATOR<->ATOR)")
+relatorio += analises.analyze_degree_distribution(grafo_nao_direcionado, "GRAFO NÃO DIRECIONADO (ATOR<->ATOR)", sample_size=100)
 
 # 2) Análise das componentes
 print("Analisando distribuição de componentes...")
 relatorio += "2) DISTRIBUIÇÃO DE COMPONENTES\n"
 relatorio += "-" * 40 + "\n\n"
 
-relatorio += analises.analyze_component_distribution(grafo_nao_direcionado, grafo_direcionado)
+relatorio += analises.analyze_component_distribution(grafo_nao_direcionado, grafo_direcionado, sample_size=100)
 
 # ============================================================================
 # ANÁLISE DE CENTRALIDADE
@@ -69,13 +69,13 @@ relatorio += analises.get_top_directors_string(grafo_direcionado, 10)
 print("Calculando centralidade de intermediação para diretores...")
 relatorio += "4) TOP 10 DIRETORES MAIS INFLUENTES (Centralidade de Intermediação)\n"
 relatorio += "-" * 60 + "\n"
-relatorio += analises.get_top_directors_betweenness_string_fast(grafo_direcionado, 10)
+relatorio += analises.get_top_directors_betweenness_string_fast(grafo_direcionado, 10, sample_size=50)
 
 # 5) Top 10 diretores por centralidade de proximidade
 print("Calculando centralidade de proximidade para diretores...")
 relatorio += "5) TOP 10 DIRETORES MAIS INFLUENTES (Centralidade de Proximidade)\n"
 relatorio += "-" * 60 + "\n"
-relatorio += analises.get_top_directors_closeness_string(grafo_direcionado, 10)
+relatorio += analises.get_top_directors_closeness_string(grafo_direcionado, 10, sample_size=50)
 
 # 6) Top 10 atores por centralidade de grau
 print("Calculando centralidade de grau para atores...")
@@ -87,13 +87,13 @@ relatorio += analises.get_top_actors_degree_string(grafo_nao_direcionado, 10)
 print("Calculando centralidade de intermediação para atores...")
 relatorio += "7) TOP 10 ATORES/ATRIZES MAIS INFLUENTES (Centralidade de Intermediação)\n"
 relatorio += "-" * 60 + "\n"
-relatorio += analises.get_top_actors_betweenness_string_fast(grafo_nao_direcionado, 10)
+relatorio += analises.fast_betweenness_actors(grafo_nao_direcionado, 10, sample_size=50)
 
 # 8) Top 10 atores por centralidade de proximidade
 print("Calculando centralidade de proximidade para atores...")
 relatorio += "8) TOP 10 ATORES/ATRIZES MAIS INFLUENTES (Centralidade de Proximidade)\n"
 relatorio += "-" * 60 + "\n"
-relatorio += analises.get_top_actors_closeness_string(grafo_nao_direcionado, 10)
+relatorio += analises.get_top_actors_closeness_string(grafo_nao_direcionado, 10, sample_size=50)
 
 # ============================================================================
 # EXPLICAÇÕES E INTERPRETAÇÕES
@@ -148,4 +148,4 @@ relatorio += "  - Componente gigante mostra a conectividade da indústria\n"
 relatorio += "  - Centralidade indica influência e acesso a oportunidades\n"
 
 to_txt("relatorio_completo.txt", relatorio)
-print("Relatório completo salvo em 'resultados/relatorio_completo.txt'") 
+print("Relatório completo gerado com sucesso em 'resultados/relatorio_completo.txt'.")
