@@ -94,3 +94,106 @@ def comp_fortemente_conexas(grafo):
             componentes.append(componente)
 
     return componentes # retorna todas as componentes achadas
+
+# ଘ(੭ˊᵕˋ)੭* ੈ✩‧₊˚ ଘ(੭ˊᵕˋ)੭* ੈ✩‧₊˚ ଘ(੭ˊᵕˋ)੭* ੈ✩‧₊˚ ଘ(੭ˊᵕˋ)੭* ੈ✩‧₊˚ ଘ(੭ˊᵕˋ)੭* ੈ✩‧₊˚ ଘ(੭ˊᵕˋ)੭* ੈ✩‧₊˚ ଘ(੭ˊᵕˋ)੭* ੈ✩‧₊˚ ଘ(੭ˊᵕˋ)੭* ੈ✩‧₊˚
+
+# ÁRVORE GERADORA MÍNIMA
+
+def mst_prim(graph, start):
+    """
+    Implementação do algoritmo de Prim usando heapq para encontrar a MST
+    da componente que contém o vértice start.
+    """
+    if graph.directed:
+        raise ValueError("Esta função só funciona com grafos não direcionados")
+    
+    if start not in graph.nodes:
+        print(f"Vértice '{start}' não encontrado no grafo")
+        return [], 0
+    
+    print(f"Calculando Árvore Geradora Mínima a partir do vértice '{start}'...")
+    
+    # Encontra a componente conexa que contém start
+    component = get_component_nodes(graph, start)
+    if len(component) <= 1:
+        print(f"Vértice '{start}' está isolado")
+        return [], 0
+    
+    # Implementação de Prim com heapq
+    visitado = set()
+    agm = []
+    custo_total = 0
+    fila = []
+
+    # Inicializa com o vértice start
+    visitado.add(start)
+    for viz, peso in graph.adj_list.get(start, []):
+        if viz in component:  # Só adiciona arestas para vértices da componente
+            heapq.heappush(fila, (peso, start, viz))
+
+    while fila and len(visitado) < len(component):
+        peso, u, v = heapq.heappop(fila)
+        if v not in visitado:
+            visitado.add(v)
+            agm.append((u, v, peso))
+            custo_total += peso
+            for viz, p in graph.adj_list.get(v, []):
+                if viz in component and viz not in visitado:  # Só adiciona arestas para vértices da componente
+                    heapq.heappush(fila, (p, v, viz))
+
+    print(f"Árvore Geradora Mínima calculada com custo total: {custo_total}")
+    return agm, custo_total
+
+def get_component_nodes(graph, start_node):
+    """
+    Encontra todos os nós da componente conexa que contém start_node.
+    Usa busca em largura (BFS).
+    """
+    if start_node not in graph.nodes:
+        return set()
+    
+    component = set()
+    queue = [start_node]
+    component.add(start_node)
+    
+    while queue:
+        current = queue.pop(0)
+        for neighbor, weight in graph.adj_list[current]:
+            if neighbor not in component:
+                component.add(neighbor)
+                queue.append(neighbor)
+    
+    return component
+
+def print_mst_info(node_x, mst_edges, total_cost):
+    """Imprime informações sobre a MST encontrada"""
+    if mst_edges:
+        print("\nArestas da MST:")
+        for u, v, weight in mst_edges:
+            print(f"  {u} -- {weight} -- {v}")
+    else:
+        print("Nenhuma MST encontrada (nó isolado ou não existe no grafo)")
+
+    print(f"\n=== Árvore Geradora Mínima para '{node_x}' ===")
+    print(f"Número de arestas na MST: {len(mst_edges)}")
+    print(f"Custo total da MST: {total_cost}")
+
+# Função de teste
+def test_mst():
+    """Função de teste para demonstrar o uso"""
+    from grafos import read_csv, undirected_graph
+    
+    # Carrega os dados e constrói o grafo
+    cast_list, director_list = read_csv('netflix_amazon_disney_titles.csv')
+    graph = undirected_graph(cast_list)
+    
+    # Testa com um nó específico
+    test_node = "BOB ODENKIRK"
+    mst_edges, total_cost = mst_prim(graph, test_node)
+    print_mst_info(test_node, mst_edges, total_cost)
+
+if __name__ == "__main__":
+    test_mst()
+
+
+# ଘ(੭ˊᵕˋ)੭* ੈ✩‧₊˚ ଘ(੭ˊᵕˋ)੭* ੈ✩‧₊˚ ଘ(੭ˊᵕˋ)੭* ੈ✩‧₊˚ ଘ(੭ˊᵕˋ)੭* ੈ✩‧₊˚ ଘ(੭ˊᵕˋ)੭* ੈ✩‧₊˚ ଘ(੭ˊᵕˋ)੭* ੈ✩‧₊˚ ଘ(੭ˊᵕˋ)੭* ੈ✩‧₊˚ ଘ(੭ˊᵕˋ)੭* ੈ✩‧₊˚
